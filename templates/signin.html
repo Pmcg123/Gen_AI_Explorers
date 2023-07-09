@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_signin.css') }}">
+    <title>Sign In</title>
+    <script>
+        function handleSignIn() {
+            // Get user input values
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            // Validate user credentials (example code, replace with your logic)
+            if (email === "pratiksha.wasudeo-meshram@capgemini.com" || 
+                email === "nilofar.a.mulani@capgemini.com" || 
+                email ==="syed.a.ibrahim@capgemini.com" || 
+                email === "nithya.mohan@capgemini.com" || 
+                email === "srig" || 
+                email === "nikhil.ponaganti@capgemini.com" 
+                
+                && 
+                
+                password === "password123") {
+                // Redirect to a new page after successful login
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+        // function sendData() {
+        //     var proj = document.getElementById('project').value;
+        //     var dset = document.getElementById('dataset').value;
+        //     var arr = { 'project': proj, 'dataset' : dset };
+        //     $.ajax({
+        //         url: '/index.html',
+        //         type: 'POST',
+        //         data: JSON.stringify(arr),
+        //         contentType: 'application/json; charset=utf-8',
+        //         success: function(response) {
+        //             document.getElementById('output').innerHTML = response.result;
+        //         },
+        //         error: function(error) {
+        //             console.log(error);
+        //         }
+        //     });
+        // }
+    </script>
+</head>
+<body>
+    <img src="/static/logo.png" width = '270px' height="270px">
+    <div class="container">
+        <h2>Sign In</h2>
+        <form>
+            <label for="project">Project:</label>
+            <input type="text" id="project" required><br>
+
+            <label for="dataset">Dataset:</label>
+            <input type="text" id="dataset" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required><br>
+
+            <label for="credentials">Credentials:</label>
+            <input type="file" id="credentials" required><br>
+
+            <button type="button" onclick="handleSignIn()">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>

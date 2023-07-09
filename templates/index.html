@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot UI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <h1>DoT BoT</h1>
+    <div class="gen-insights">  
+    <button onclick="redirectToTab()">Generate Insights</button>    
+    <script>
+        function redirectToTab() {
+            window.open('https://lookerstudio.google.com/u/0/reporting/e902c2b2-26ee-48d1-a2da-18c7e31c35ec/page/bP6VD', '_blank');
+        }
+    </script>
+    </div>
+    <div class="container">
+        
+        <div class="chatbox">
+            <!-- <h1>
+                Connected to {{ dataset_temp }} in {{ project_temp }}
+            </h1> -->
+            <div class="message-container">
+                <div class="bot-message-initial">
+                    <span>Hi, This is DoT BoT. I am here to help on any of your queries regarding your database and its information.</span>
+                    <i class="fas fa-robot"></i>
+                </div>
+                {% for message in chat_history %}
+                {% if message[0] == 'user' %}
+                <div class="user-message">
+                    <i class="fas fa-user"></i>
+                    <span>{{ message[1] }}</span>
+                </div>
+                {% else %}
+                <div class="bot-message">
+                    <span>{{ message[1] }}</span>
+                    <i class="fas fa-robot"></i>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <form method="POST" action="/chat" id="chat-form">
+                <input type="text" name="user_input" placeholder="Enter your Input" autocomplete="off" autofocus>
+                <button type="submit" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Scroll to the bottom of the chatbox
+        function scrollToBottom() {
+            var chatbox = document.querySelector(".chatbox");
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // Scroll to bottom on page load
+        window.onload = scrollToBottom;
+
+        // Scroll to bottom on new message
+        document.getElementById("chat-form").addEventListener("submit", function() {
+            setTimeout(scrollToBottom, 100);
+        });
+    </script>
+</body>
+</html>
+
